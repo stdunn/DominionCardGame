@@ -40,9 +40,9 @@ ActionCard::ActionCard(std::string cardName)
     {
         this = ActionCard_Festival();
     }
-    else if(cardName == "Labratory")
+    else if(cardName == "Laboratory")
     {
-        this = ActionCard_Labratory();
+        this = ActionCard_Laboratory();
     }
     else if(cardName == "Market")
     {
