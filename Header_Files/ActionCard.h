@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ACTIONCARD_H
+#define ACTIONCARD_H
+
 #include "Card.h"
 
 #include <string>
@@ -12,6 +14,8 @@ public:
         
     virtual void play();
 };
+
+#endif // ACTIONCARD_H
 
 
 
