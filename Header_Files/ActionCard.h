@@ -1,10 +1,17 @@
 #pragma once
 #include "Card.h"
+
+#include <string>
+
 class ActionCard :
 	public Card
 {
 public:
-	ActionCard(void);
+	ActionCard(std::string cardName);
 	~ActionCard(void);
+        
+    virtual void play();
 };
+
+
 

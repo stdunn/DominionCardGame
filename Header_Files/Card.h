@@ -3,6 +3,7 @@
 #define CARD_H
 
 #include <string>
+#include <stdexcept>
 
 class Card 
 {
@@ -29,6 +30,13 @@ public:
 	{
 		return cost;
 	}
+};
+
+class noSuchCardException: public std::runtime_error
+{
+    noSuchCardException(std::string errorMessage) : std::runtime_error(errorMessage)
+    {}
+ 
 };
 
 #endif // CARD_H

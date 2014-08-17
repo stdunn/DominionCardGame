@@ -175,4 +175,3 @@ std::vector<Card> Player::getHand()
 {
 	return hand;
 }
-};
