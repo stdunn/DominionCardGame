@@ -16,11 +16,13 @@ class Player
 
 private:
 	
+	// Card groups
 	std::vector<Card*> hand;
 	std::vector<Card*> discard;
 	std::vector<Card*> cardsInPlay;
 	std::vector<Card*> deck;
 	
+	// Additional buys (given as a result of action cards)
 	std::vector<SpecialBuy*> specialBuys;
 	
 	int actions;
@@ -31,25 +33,24 @@ public:
 	Player();
 	~Player();
 	
-	void addCards(int cardsToAdd);
-
+	// Player state changes
 	void addActions(int actionsToAdd);
-
 	void addBuys(int buysToAdd);
-
 	void addTreasure(int treasureToAdd);
 
-	void play(ActionCard c, GameState state);
-
-	void discardCard(Card c);
+    // Player actions
+    void drawCards(int numOfCards);
+	void play(ActionCard* c, GameState& state);
+	void buy(Card* c, GameState& state);
+	void discardCard(Card* c);
 
 	void reshuffleDeck();
 
-	Card topOfDeck();
+	Card* topOfDeck();
 
-	void addToTopOfDeck(Card c);
+	void addToTopOfDeck(Card* c);
 
-	void discardToTopOfDeck(Card c);
+	void discardToTopOfDeck(Card* c);
 
 	void discardTop();
 
@@ -62,9 +63,6 @@ public:
 	void endTurn();
 	
 	int getDeckSize();
-
-	std::vector<Card> getHand();
-
 };
 
 #endif // PLAYER_H

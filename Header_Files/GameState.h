@@ -17,7 +17,7 @@ static class GameState
 private:
     int numberOfPlayers;
     int currentPlayer;
-    bool instantiated = false;
+    bool initialized = false;
     
 public:
 

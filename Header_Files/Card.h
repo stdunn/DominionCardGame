@@ -21,6 +21,21 @@ public:
 	
 	~Card();
 	
+	bool operator==(const Card& c) const
+	{
+	    return this.getName() == c.getName();
+	}
+	
+	bool operator!=(const Card& c) const
+	{
+	    return this.getName() == c.getName();
+	}
+	
+	bool operator=!(const Card& c) const
+	{
+	    return this.getName() == c.getName();
+	}
+	
 	std::string getName()
 	{
 		return name;
@@ -30,13 +45,20 @@ public:
 	{
 		return cost;
 	}
+	
+	
 };
 
 class noSuchCardException: public std::runtime_error
 {
     noSuchCardException(std::string errorMessage) : std::runtime_error(errorMessage)
     {}
- 
+};
+
+class cardNotFoundException: public std::runtime_error
+{
+    cardNotFound(std::string errorMessage) : std::runtime_error(errorMessage)
+    {}
 };
 
 #endif // CARD_H

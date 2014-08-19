@@ -1,31 +1,23 @@
 #include "GameState.h"
 
 
-
-private:
-    int numberOfPlayers;
-    int currentPlayer;
-    bool instantiated = false;
-    
-GameState::GameState(int numOfPlayers)
-: numberOfPlayers = numOfPlayers, players = std::vector<Player*>(numberOfPlayers)
+void GameState::initialize(int numOfPlayers)
 {
-
-}
-    
-GameState::~GameState();
-    
-
-
-void GameState::instantiateGameState(int numOfPlayers)
-{
-    if (instantiated == false)
+    // if Game State isn't initilized, set default values.
+    // Otherwise, do nothing
+    if (initialized == false)
     {
-        return GameState(numOfPlayers);
+        numberOfPlayers = numOfPlayers;
+        currentPlayer = 0;
+        players = new std::vector<Player*>(numberOfPlayers);
+        instantiated = true;
+        
     }
-    else
-        return this;
 }
     
-    Player* currentPlayer();
+    
+Player* GameState::currentPlayer()
+{
+    return players[currentPlayer];
+}
     

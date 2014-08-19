@@ -26,20 +26,6 @@ Player::~Player()
 {
 }
 	
-void Player::addCards(int cardsToAdd)
-{
-	for(int i = 0; i < cardsToAdd; i++)
-	{
-		if(deck.empty())
-		{
-			reshuffleDeck();
-			discard.clear();
-		}
-		hand.push_back(deck.back());
-		deck.pop_back();
-	}	
-}
-	
 void Player::addActions(int actionsToAdd)
 {
 	actions += actionsToAdd;
@@ -55,26 +41,42 @@ void Player::addTreasure(int treasureToAdd)
 	buyPower += treasureToAdd;
 }
 	
-void Player::play(ActionCard c, GameState state)
+void Player::drawCards(int numOfCards)
+{
+    for(int i = 0; i < numOfCards; i++)
+    {
+        if(deck.empty())
+        {
+            reshuffleDeck();
+            discard.clear();
+        }
+        hand.push_back(deck.back());
+        deck.pop_back();
+    }    
+}
+
+void Player::play(ActionCard* c, GameState& state)
 {
 	
 	for(int i = 0; i < hand.size(); i++)
 	{
-		if(hand.get(i).getName().equals(c.getName()))
+		if(*(hand[i]) == *c)
 		{
-			cardsInPlay.add(hand.remove(i));
-			c.play(state);
+			cardsInPlay.push_back(hand[i]);
+			hand.erase(hand.begin() + i);
+			c->play(state);
 		}
 	}
 }
 	
-void Player::discardCard(Card c)
+void Player::discardCard(Card* c)
 {
 	for(int i = 0; i < hand.size(); i++)
 	{
-		if(hand.get(i).getName().equals(c.getName()))
+		if(*(hand[i]) == *c)
 		{
-			discard.add(hand.remove(i));
+			discard.push_back(hand[i]);
+			hand.erase(hand.begin() + i);
 		}
 	}
 }
@@ -91,43 +93,49 @@ void Player::reshuffleDeck()
 	}
 }
 	
-Card Player::topOfDeck()
+Card* Player::topOfDeck()
 {
 	if(deck.empty())
 	{
 		reshuffleDeck();
 		discard.clear();
 	}
-	return deck.peek();
+	return deck.back();
 }
 	
-void Player::addToTopOfDeck(Card c)
+void Player::addToTopOfDeck(Card* c)
 {
-	deck.push(c);
+	deck.push_back(c);
 }
 	
-void Player::discardToTopOfDeck(Card c)
+void Player::discardToTopOfDeck(Card* c)
 {
 	for(int i = 0; i < hand.size(); i++)
 	{
-		if(hand.get(i).getName().equals(c.getName()))
+		if(*(hand[i]) == *c)
 		{
-			hand.remove(i);
+			hand.erase(i);
 			deck.push(c);
 			return;
 		}
 	}
+	
+	// if card not found in player's hand
+	std::string errorMessage ("Runtime error: The following card \
+	    could not be found in a player's hand: " + c->getName());
+	throw new cardNotFoundException(errorMessage);
 		
 }
 	
 void Player::discardTop()
 {
-	if(deck.isEmpty())
+	if(deck.empty())
 	{
-		deck.reshuffle(discard);
+		reshuffleDeck();
 		discard.clear();
 	}
-	discard.add(deck.pop());	
+	discard.push_back(deck.back());
+	deck.pop_back();
 }
 	
 int Player::getActions()
@@ -147,31 +155,29 @@ int Player::getBuyPower()
 	
 void Player::endTurn()
 {
+    // reset attributes for next turn
 	actions = 1;
 	buys = 1;
 	buyPower = 0;
 		
-	for(Card card: cardsInPlay)
+	// discard all cards in play	
+	for(Card* card: cardsInPlay)
 	{
-		discard.add(card);
+		discard.push_back(card);
 	}
 	cardsInPlay.clear();
 		
-	for(Card card: hand)
+	// discard all cards in the hand
+	for(Card* card: hand)
 	{
-		discard.add(card);
+		discard.push_back(card);
 	}
 	hand.clear();
 		
-	addCards(5);
+	drawCards(5);
 }
 	
 int Player::getDeckSize()
 {
 	return deck.size();
-}
-
-std::vector<Card> Player::getHand()
-{
-	return hand;
 }
