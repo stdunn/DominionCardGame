@@ -13,11 +13,17 @@ VictoryCard::VictoryCard(std::string cardName)
 		winValue = 3;
 		cost = 5;
 	}
-	else // cardName must be "Province"
+	else if(cardName == "Province")
 	{
 		winValue = 6;
 		cost = 8;
 	}
+	else
+    {
+        std::string errorMessage \
+            ("No victory card exists with name: " + cardName);
+        throw new noSuchCardException(errorMessage);
+    }
 }
 
 

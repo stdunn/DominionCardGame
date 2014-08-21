@@ -9,10 +9,13 @@
 class ActionCard :
 	public Card
 {
+protected:
+    Player* currentPlayer;
+    
 public:
-	~ActionCard(void);
+	virtual ~ActionCard();
         
-    virtual void play(GameState state) = 0;
+    virtual void play() = 0;
 };
 
 #endif // ACTIONCARD_H

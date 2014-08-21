@@ -28,6 +28,8 @@ private:
 	int actions;
 	int buys;
 	int buyPower;
+	
+	
 
 public:
 	Player();
@@ -40,8 +42,8 @@ public:
 
     // Player actions
     void drawCards(int numOfCards);
-	void play(ActionCard* c, GameState& state);
-	void buy(Card* c, GameState& state);
+	void play(ActionCard* c);
+	void buy(Card* c);
 	void discardCard(Card* c);
 
 	void reshuffleDeck();
@@ -64,6 +66,20 @@ public:
 	
 	int getDeckSize();
 };
+
+class notEnoughBuysException: public std::runtime_error
+{
+    notEnoughBuysException(std::string errorMessage) : std::runtime_error(errorMessage)
+    {}
+};
+
+class notEnoughBuyPowerException: public std::runtime_error
+{
+    notEnoughBuyPowerException(std::string errorMessage) : std::runtime_error(errorMessage)
+    {}
+};
+
+
 
 #endif // PLAYER_H
 

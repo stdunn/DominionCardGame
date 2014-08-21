@@ -13,11 +13,18 @@ TreasureCard::TreasureCard(std::string cardName)
 		buyPower = 2;
 		cost = 3;
 	}
-	else //	cardName must be "Gold":
+	else if (cardName == "Gold")
 	{
 		buyPower = 3;
 		cost = 6;
 	}
+	else
+	{
+	    std::string errorMessage \
+	        ("No treasure card exists with name: " + cardName);
+	    throw new noSuchCardException(errorMessage);
+	}
+	    
 }
 
 TreasureCard::~TreasureCard(void)

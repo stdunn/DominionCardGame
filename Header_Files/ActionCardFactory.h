@@ -71,7 +71,8 @@ public:
         }   
         else
         {
-           std::string errorMessage = "Could not create action card with name: " + cardName;
+           std::string errorMessage \
+                ("No such action card with name: " + cardName);
            throw noSuchCardException(errorMessage);
         }
     }

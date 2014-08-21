@@ -9,7 +9,7 @@ class ActionCard_Adventurer : public ActionCard
 public:
     ActionCard_Adventurer();
     
-    virtual void play(GameState state);
+    virtual void play();
 };
 
 #endif // ACTIONCARD_ADVENTURER_H

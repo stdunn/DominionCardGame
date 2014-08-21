@@ -6,7 +6,9 @@ ActionCard_Adventurer::ActionCard_Adventurer(std::string cardName)
     
 }
 
-void ActionCard_Adventurer::play(GameState state)
+void ActionCard_Adventurer::play()
 {
-    state.currentPlayer()
+    Player* currentPlayer = GameState::currentPlayer();
+    
+    
 }

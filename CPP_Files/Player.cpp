@@ -3,6 +3,8 @@
 // import java.util.Stack;
 #include "Player.h"
 
+#include <stdexcept>
+
 Player::Player()
 {
 	actions = 1;
@@ -26,6 +28,8 @@ Player::~Player()
 {
 }
 	
+// ------------------------------------------------------
+// Player state changes 
 void Player::addActions(int actionsToAdd)
 {
 	actions += actionsToAdd;
@@ -41,6 +45,7 @@ void Player::addTreasure(int treasureToAdd)
 	buyPower += treasureToAdd;
 }
 	
+// Player actions
 void Player::drawCards(int numOfCards)
 {
     for(int i = 0; i < numOfCards; i++)
@@ -55,7 +60,7 @@ void Player::drawCards(int numOfCards)
     }    
 }
 
-void Player::play(ActionCard* c, GameState& state)
+void Player::play(ActionCard* c)
 {
 	
 	for(int i = 0; i < hand.size(); i++)
@@ -69,6 +74,29 @@ void Player::play(ActionCard* c, GameState& state)
 	}
 }
 	
+void Player::buy(Card* c) throws std::runtime_error
+{
+    try
+    {
+        
+        if (buys < 1)
+        {
+            throw new notEnoughBuysException \
+                ("Not enough buys to make purchase.");
+        }
+        else if (buyPower < c->getCost())
+        {
+            throw new notEnoughBuyPowerException \
+                ("Not enough buy power to make purchase.");
+        }
+        else
+        {
+            discard.push_back(c);
+            GameState::removeCard(c);
+        }
+    }
+}
+
 void Player::discardCard(Card* c)
 {
 	for(int i = 0; i < hand.size(); i++)
