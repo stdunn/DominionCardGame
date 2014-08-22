@@ -91,8 +91,18 @@ void Player::buy(Card* c) throws std::runtime_error
         }
         else
         {
-            discard.push_back(c);
-            GameState::removeCard(c);
+            bool buySuccess = GameState::removeCard(c);
+            if (buySuccess)
+            {
+                discard.push_back(c);    
+            }
+            else
+            {
+                // Tell the player there is no more of the card
+                // available for purchase.
+            }
+            
+            
         }
     }
 }
@@ -183,6 +193,10 @@ int Player::getBuyPower()
 	
 void Player::endTurn()
 {
+    // CHECK IF GAME IS OVER
+    /*
+    */
+    
     // reset attributes for next turn
 	actions = 1;
 	buys = 1;

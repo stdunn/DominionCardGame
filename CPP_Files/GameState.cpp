@@ -11,6 +11,7 @@ void GameState::initialize(int numOfPlayers)
     {
         numberOfPlayers = numOfPlayers;
         currentPlayer = 0;
+        emptyDecks = 0;
         
         players = new std::vector<Player*>(numberOfPlayers);
         for (int i = 0; i < numberOfPlayers; i++)
@@ -66,5 +67,21 @@ Player* GameState::currentPlayer()
 {
     return players[currentPlayer];
 }
+
+bool GameState::removeCard(Card* c)
+{
+    int availableCardsIndex = availableCardsMap.at(c->getName());
     
+    if (availableCards[availableCardsIndex].size() == 0)
+    {
+        return false;
+    }
+    
+    availableCards[availableCardsIndex].pop_back();
+    
+    if (availableCards[availableCardsIndex].size() == 0)
+    {
+        emptyDecks++;
+    }
+}    
 

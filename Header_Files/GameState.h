@@ -13,6 +13,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <stdexcept>
 
 static class GameState
 {
@@ -23,6 +24,7 @@ private:
     
     int numberOfPlayers;
     int currentPlayer;
+    int emptyDecks;
     bool initialized = false;
     
     /* A mapping of action card names and indexes for
@@ -61,6 +63,12 @@ public:
     
     // returns a pointer to the current player.
     Player* currentPlayer();
+    
+    /* Checks to see if the card is an action card. 
+    * If it is, it removes one card from the appropriate deck in the
+    * set of available cards. 
+    */
+    bool removeCard(Card* c);
     
 };
 
