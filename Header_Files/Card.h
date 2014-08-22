@@ -5,11 +5,19 @@
 #include <string>
 #include <stdexcept>
 
+enum CardType
+{
+    Action,
+    Treasure,
+    Victory
+};
+
 class Card 
 {
 private:
 	std::string name;
-
+    CardType type;
+    
 protected:
 	int cost;
 
@@ -46,8 +54,13 @@ public:
 		return cost;
 	}
 	
+	CardType getType()
+	{
+	    return type;
+	}
 	
 };
+
 
 class noSuchCardException: public std::runtime_error
 {

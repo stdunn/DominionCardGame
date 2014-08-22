@@ -1,17 +1,14 @@
-#ifndef ACTIONCARD_ADVENTURER_H
-#define ACTIONCARD_ADVENTURER_H
+#ifndef ACTIONCARD_CELLAR_H
+#define ACTIONCARD_CELLAR_H
 
 #include "ActionCard.h"
 #include "GameState.h"
 
-class ActionCard_Adventurer : public ActionCard
+class ActionCard_Cellar : public ActionCard
 {
 public:
-    ActionCard_Adventurer();
-    virtual void play()
-    {
-        
-        
+    ActionCard_Cellar(std::string cardName);
+    virtual void play();
 };
 
-#endif // ACTIONCARD_ADVENTURER_H
+#endif // ACTIONCARD_CELLAR_H

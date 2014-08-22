@@ -68,7 +68,7 @@ Player* GameState::currentPlayer()
     return players[currentPlayer];
 }
 
-bool GameState::removeCard(Card* c)
+bool GameState::removeCard(Card* c) throws std::out_of_range
 {
     int availableCardsIndex = availableCardsMap.at(c->getName());
     

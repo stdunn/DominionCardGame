@@ -76,33 +76,40 @@ void Player::play(ActionCard* c)
 	
 void Player::buy(Card* c) throws std::runtime_error
 {
-    try
+    if (buys < 1)
     {
-        
-        if (buys < 1)
+        throw new notEnoughBuysException \
+            ("Not enough buys to make purchase.");
+    }
+    else if (buyPower < c->getCost())
+    {
+        throw new notEnoughBuyPowerException \
+            ("Not enough buy power to make purchase.");
+    }
+    else
+    {
+        try // try to remove card
         {
-            throw new notEnoughBuysException \
-                ("Not enough buys to make purchase.");
+            bool buySuccess = GameState::removeCard(c);
         }
-        else if (buyPower < c->getCost())
+        catch (std::out_of_range& oor)
         {
-            throw new notEnoughBuyPowerException \
-                ("Not enough buy power to make purchase.");
+            /* Two possibilities:
+            *   1)  the arg 'c' isn't a real card (improbable)
+            *   2) 'c' is a victory or treasure card
+            *   Only the 2nd is taken care of here. 
+            */
+            buySuccess = true;
+        }
+        
+        if (buySuccess)
+        {
+            discard.push_back(c);    
         }
         else
         {
-            bool buySuccess = GameState::removeCard(c);
-            if (buySuccess)
-            {
-                discard.push_back(c);    
-            }
-            else
-            {
-                // Tell the player there is no more of the card
-                // available for purchase.
-            }
-            
-            
+            // Tell the player there is no more of the card
+            // available for purchase.
         }
     }
 }

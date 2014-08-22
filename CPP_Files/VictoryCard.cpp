@@ -24,6 +24,8 @@ VictoryCard::VictoryCard(std::string cardName)
             ("No victory card exists with name: " + cardName);
         throw new noSuchCardException(errorMessage);
     }
+    
+    CardType = CardType::Victory;
 }
 
 

@@ -24,7 +24,8 @@ TreasureCard::TreasureCard(std::string cardName)
 	        ("No treasure card exists with name: " + cardName);
 	    throw new noSuchCardException(errorMessage);
 	}
-	    
+	 
+	 CardType = CardType::Treasure;   
 }
 
 TreasureCard::~TreasureCard(void)
