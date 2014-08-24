@@ -1,17 +1,14 @@
-#ifndef ACTIONCARD_ADVENTURER_H
-#define ACTIONCARD_ADVENTURER_H
+#ifndef ACTIONCARD_VILLAGE_H
+#define ACTIONCARD_VILLAGE_H
 
 #include "ActionCard.h"
 #include "GameState.h"
 
-class ActionCard_Adventurer : public ActionCard
+class ActionCard_Village : public ActionCard
 {
 public:
-    ActionCard_Adventurer();
-    virtual void play()
-    {
-        
-        
+    ActionCard_Village();
+    virtual void play();
 };
 
-#endif // ACTIONCARD_ADVENTURER_H
+#endif // ACTIONCARD_VILLAGE_H

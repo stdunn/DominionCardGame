@@ -1,17 +1,14 @@
-#ifndef ACTIONCARD_ADVENTURER_H
-#define ACTIONCARD_ADVENTURER_H
+#ifndef ACTIONCARD_WOODCUTTER_H
+#define ACTIONCARD_WOODCUTTER_H
 
 #include "ActionCard.h"
 #include "GameState.h"
 
-class ActionCard_Adventurer : public ActionCard
+class ActionCard_Woodcutter : public ActionCard
 {
 public:
-    ActionCard_Adventurer();
-    virtual void play()
-    {
-        
-        
+    ACTIONCARD_WoodCutter();
+    virtual void play();
 };
 
-#endif // ACTIONCARD_ADVENTURER_H
+#endif // ACTIONCARD_WOODCUTTER_H
