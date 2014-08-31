@@ -3,6 +3,7 @@
 ActionCard_Cellar::ActionCard_Cellar(std::string cardName)
  : Card(cardName)
 {
+    cost = 2;
     type = CardType::Action;       
 }
 
@@ -24,7 +25,7 @@ void ActionCard_Cellar::play()
     Player* currentPlayer = GameState::currentPlayer();
     int numberOfDiscards;
     
-    currentPlayer.addActions(1);
+    currentPlayer->addActions(1);
     
     /* IMPLEMENT:
     *   Prompt: discard any number of cards. 
@@ -44,8 +45,5 @@ void ActionCard_Cellar::play()
     }
     */
     
-    for (int i = 0; i < numberOfDiscards; i++)
-    {
-        currentPlayer.drawCards(numberOfDiscards);
-    }
+    currentPlayer->drawCards(numberOfDiscards);
 }

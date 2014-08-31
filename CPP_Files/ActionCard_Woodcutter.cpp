@@ -15,6 +15,6 @@ void ActionCard_Woodcutter::play()
 {
     Player* currentPlayer = GameState::currentPlayer();
     
-    currentPlayer.addBuys(1);
-    currentPlayer.addTreasure(2);
+    currentPlayer->addBuys(1);
+    currentPlayer->addTreasure(2);
 }

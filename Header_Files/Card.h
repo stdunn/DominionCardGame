@@ -13,11 +13,12 @@ enum CardType
 
 class Card 
 {
-private:
-	std::string name;
-    CardType type;
-    
 protected:
+
+    std::string name;
+    
+    // Type and cost Should be set in the subclass' constructor
+    CardType type;
 	int cost;
 
 public:

@@ -3,6 +3,7 @@
 ActionCard_Adventurer::ActionCard_Adventurer(std::string cardName)
 : Card(cardName) 
 {
+    cost = 6;
     CardType = CardType::Action;
 }
 
