@@ -8,10 +8,8 @@ class ActionCard_Adventurer : public ActionCard
 {
 public:
     ActionCard_Adventurer();
-    virtual void play()
-    {
-        
-        
+    virtual void play();
+    
 };
 
 #endif // ACTIONCARD_ADVENTURER_H
