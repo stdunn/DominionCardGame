@@ -1,8 +1,11 @@
-#pragma once
+#include "Card.h"
+#include "Player.h"
+
 class SpecialBuy
 {
+    
 public:
-	SpecialBuy(void);
-	~SpecialBuy(void);
+	SpecialBuy();
+	~SpecialBuy();
 };
 
