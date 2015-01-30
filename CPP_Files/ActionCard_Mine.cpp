@@ -19,13 +19,13 @@ void ActionCard_Festival::play()
     Player* currentPlayer = GameState::currentPlayer();
     
     // Select card in hand to upgrade (CHOSEN_CARD)
-    cardToUpgrade = CHOSEN_CARD;
+    TreasureCard* cardToUpgrade = CHOSEN_CARD;
     
-    if (cardToUpgrade.getName() == "Copper")
+    if (cardToUpgrade->getName() == "Copper")
     {
         cardToUpgrade = new TreasureCard("Silver");
     }
-    else if (cardToUpgrade.getName() == "Silver")
+    else if (cardToUpgrade->getName() == "Silver")
     {
         cardToUpgrade = new TreasureCard("Gold");
     }
